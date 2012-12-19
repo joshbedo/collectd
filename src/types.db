@@ -55,6 +55,8 @@ email_check		value:GAUGE:0:U
 email_count		value:GAUGE:0:U
 email_size		value:GAUGE:0:U
 entropy			value:GAUGE:0:4294967295
+evicted_keys    value:DERIVE:0:U
+expired_keys    value:DERIVE:0:U
 fanspeed		value:GAUGE:0:U
 file_size		value:GAUGE:0:U
 files			value:GAUGE:0:U
@@ -81,6 +83,8 @@ io_packets		rx:DERIVE:0:U, tx:DERIVE:0:U
 ipt_bytes		value:DERIVE:0:U
 ipt_packets		value:DERIVE:0:U
 irq			value:DERIVE:0:U
+keyspace_hits   value:DERIVE:0:U
+keyspace_misses value:DERIVE:0:U
 latency			value:GAUGE:0:65535
 links			value:GAUGE:0:U
 load			shortterm:GAUGE:0:100, midterm:GAUGE:0:100, longterm:GAUGE:0:100
@@ -160,6 +164,8 @@ total_threads		value:DERIVE:0:U
 total_time_in_ms	value:DERIVE:0:U
 total_values		value:DERIVE:0:U
 uptime			value:GAUGE:0:4294967295
+used_cpu_sys    value:DERIVE:0:U
+used_cpu_user   value:DERIVE:0:U
 users			value:GAUGE:0:65535
 vcpu			value:GAUGE:0:U
 virt_cpu_total		value:DERIVE:0:U

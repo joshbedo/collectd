@@ -277,6 +277,11 @@ static int redis_read (void) /* {{{ */
      *   int uptime_in_seconds;
      *   int uptime_in_days;
      *   int role;
+     *   long long keyspace_hits;
+     *   long long keyspace_misses;
+     *   long long evicted_keys;
+     *   float used_cpu_sys;
+     *   float used_cpu_user;
      * } REDIS_INFO; */
 
     DEBUG ("redis plugin: received info from node `%s': connected_clients = %d; "
@@ -294,6 +299,12 @@ static int redis_read (void) /* {{{ */
     redis_submit_g (rn->name, "volatile_changes", NULL, info.changes_since_last_save);
     redis_submit_d (rn->name, "total_connections", NULL, info.total_connections_received);
     redis_submit_d (rn->name, "total_operations", NULL, info.total_commands_processed);
+    redis_submit_d (rn->name, "keyspace_hits", NULL, info.keyspace_hits);
+    redis_submit_d (rn->name, "keyspace_misses", NULL, info.keyspace_misses);
+    redis_submit_d (rn->name, "expired_keys", NULL, info.expired_keys);
+    redis_submit_d (rn->name, "evicted_keys", NULL, info.evicted_keys);
+    redis_submit_d (rn->name, "used_cpu_sys", NULL, info.used_cpu_sys);
+    redis_submit_d (rn->name, "used_cpu_user", NULL, info.used_cpu_user);
 
     credis_close (rh);
   }
