@@ -266,16 +266,28 @@ static int redis_read (void) /* {{{ */
 
     /* typedef struct _cr_info {
      *   char redis_version[CREDIS_VERSION_STRING_SIZE];
-     *   int bgsave_in_progress;
+     *   int arch_bits;
+     *   char multiplexing_api[CREDIS_MULTIPLEXING_API_SIZE];
+     *   long process_id;
+     *   long uptime_in_seconds;
+     *   long uptime_in_days;
      *   int connected_clients;
      *   int connected_slaves;
-     *   unsigned int used_memory;
+     *   int blocked_clients;
+     *   unsigned long used_memory;
+     *   char used_memory_human[CREDIS_USED_MEMORY_HUMAN_SIZE];
      *   long long changes_since_last_save;
-     *   int last_save_time;
+     *   int bgsave_in_progress;
+     *   long last_save_time;
+     *   int bgrewriteaof_in_progress;
      *   long long total_connections_received;
      *   long long total_commands_processed;
-     *   int uptime_in_seconds;
-     *   int uptime_in_days;
+     *   long long expired_keys;
+     *   unsigned long hash_max_zipmap_entries;
+     *   unsigned long hash_max_zipmap_value;
+     *   long pubsub_channels;
+     *   unsigned int pubsub_patterns;
+     *   int vm_enabled;
      *   int role;
      *   long long keyspace_hits;
      *   long long keyspace_misses;

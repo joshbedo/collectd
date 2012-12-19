@@ -527,7 +527,7 @@ Prerequisites
     Used by the `oracle' plugin.
 
   * libcredis (optional)
-    Used by the redis plugin. Please note that you require a 0.2.2 version
+    Used by the redis plugin. Please note that you require a 0.2.3 version
     or higher. <http://code.google.com/p/credis/>
 
   * libcurl (optional)
