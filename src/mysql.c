@@ -661,6 +661,12 @@ static int mysql_read (user_data_t *ud)
 					key + strlen ("Table_locks_"),
 					val, db);
 		}
+        else if (strncmp (key, "Slow_queries",
+                    strlen ("Slow_queries")) == 0)
+        {
+            derive_submit ("slow_queries", "slow_queries",
+            val, db);
+        }
 	}
 	mysql_free_result (res); res = NULL;
 
