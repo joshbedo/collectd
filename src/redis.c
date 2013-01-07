@@ -305,15 +305,27 @@ static int redis_read (void) /* {{{ */
         info.total_connections_received, info.total_commands_processed,
         info.uptime_in_seconds);
 
+    redis_submit_g (rn->name, "arch_bits", NULL, info.arch_bits);
+    redis_submit_g (rn->name, "process_id", NULL, info.process_id);
+    redis_submit_g (rn->name, "uptime", "seconds", info.uptime_in_seconds);
+    redis_submit_g (rn->name, "uptime", "days", info.uptime_in_days);
     redis_submit_g (rn->name, "current_connections", "clients", info.connected_clients);
     redis_submit_g (rn->name, "current_connections", "slaves", info.connected_slaves);
+    redis_submit_g (rn->name, "current_connections", "blocked_clients", info.blocked_clients);
     redis_submit_g (rn->name, "memory", "used", info.used_memory);
     redis_submit_g (rn->name, "volatile_changes", NULL, info.changes_since_last_save);
+    redis_submit_g (rn->name, "persist", "bgsave_in_progress", info.bgsave_in_progress);
+    redis_submit_g (rn->name, "persist", "last_save_time", info.last_save_time);
+    redis_submit_g (rn->name, "persist", "bgrewriteaof_in_progress", info.bgrewriteaof_in_progress);
     redis_submit_d (rn->name, "total_connections", NULL, info.total_connections_received);
     redis_submit_d (rn->name, "total_operations", NULL, info.total_commands_processed);
+    redis_submit_d (rn->name, "expired_keys", NULL, info.expired_keys);
+    redis_submit_d (rn->name, "pubsub", "channels", info.pubsub_channels);
+    redis_submit_d (rn->name, "pubsub", "patterns", info.pubsub_patterns);
+    redis_submit_d (rn->name, "vm_enabled", NULL, info.vm_enabled);
+    redis_submit_d (rn->name, "role", NULL, info.role);
     redis_submit_d (rn->name, "keyspace_hits", NULL, info.keyspace_hits);
     redis_submit_d (rn->name, "keyspace_misses", NULL, info.keyspace_misses);
-    redis_submit_d (rn->name, "expired_keys", NULL, info.expired_keys);
     redis_submit_d (rn->name, "evicted_keys", NULL, info.evicted_keys);
     redis_submit_d (rn->name, "used_cpu_sys", NULL, info.used_cpu_sys);
     redis_submit_d (rn->name, "used_cpu_user", NULL, info.used_cpu_user);
